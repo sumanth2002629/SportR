@@ -1,0 +1,8 @@
+.Router{
+  display: flex;
+}
+
+.nav-link{
+  color:blue;
+  padding:5px;
+}
