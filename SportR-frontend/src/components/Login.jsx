@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom"
 import "../styles/Home.css"
+import axios from 'axios'
 
+
+//Token Storage is yet to be done
 const Login = ({ onUpdate }) => {
 
   const [username, setUsername] = useState('');
@@ -10,13 +13,28 @@ const Login = ({ onUpdate }) => {
   const navigate = useNavigate()
 
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     // Add your login logic here
-    console.log('Logging in with:', { username, password });
-    onUpdate(true)
+    try {
+      const response = await axios.post("http://localhost:3001/login", {username,password})
+      const user = response.data
+      console.log(user)
+      setUsername('')
+      setPassword('')
 
-    navigate("/")
+      onUpdate(true)
+      navigate("/")
+    } catch (exception) {
+      console.log("wrong credentials!")
+    }
+
+    // const x = await axios.get("http://localhost:3001/temp")
+    // console.log(x)
+
+
+    console.log('Logging in with:', { username, password });
+    
   };
 
   const handleRegister = () => {

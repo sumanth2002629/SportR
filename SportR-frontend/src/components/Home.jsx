@@ -8,7 +8,7 @@ const Home = ({login}) => {
   const navigate = useNavigate()
 
   const Rent = ()=>{
-    login?navigate("/Rent"):navigate("/Register")
+    login?navigate("/Rent"):navigate("/login")
   }
 
   return (

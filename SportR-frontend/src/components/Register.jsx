@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import "../styles/Home.css";
+import axios from "axios"
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -11,9 +12,9 @@ const Register = () => {
   const navigate = useNavigate()
 
 
-  const handleRegister = (e) => {
+  const handleRegister = async(e) => {
     e.preventDefault();
-    // Add your registration logic here
+    // Add your registration logic here.
     console.log('Registering with:', { username, whatsappNumber, password });
 
     if(password!=confirmPassword) 
@@ -23,6 +24,19 @@ const Register = () => {
     else
     {
       navigate("/login")
+    }
+
+
+    try {
+      const response = await axios.post("http://localhost:3001/register", {username, whatsappNumber, password})
+      const user = response.data
+      console.log(user)
+      setUsername('')
+      setPassword('')
+      setWhatsappNumber("")
+      setConfirmPassword("")
+    } catch (exception) {
+      console.log("wrong credentials!")
     }
     
   };
