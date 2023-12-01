@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import {
   BrowserRouter as Router,
-  Routes, Route, Link
+  Routes, Route, Link, useNavigate
 } from 'react-router-dom'
 
 import Home from "./components/Home"
@@ -22,11 +22,12 @@ import './index.css'
 
 function App() {
   const [login, setLogin] = useState(false)
+  
 
   return (
     <Router >
         <div>
-          <Navbar expand="lg" className="bg-body-tertiary">
+          <Navbar expand="lg" className="bg-body-tertiary" >
             <Container>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
@@ -45,7 +46,7 @@ function App() {
                   </Nav.Link>
                   <Nav.Link>
                     {
-                      login?<Link onClick={()=>setLogin(false)} className="nav-link">Logout</Link>:<></>
+                      login?<Link onClick={()=>{setLogin(false);}} className="nav-link" to="/">Logout</Link>:<></>
                     }
                   </Nav.Link>
                 </Nav>  
@@ -55,7 +56,7 @@ function App() {
         </div>
 
         <Routes>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<Home login={login}/>}/>
           <Route path="/about" element={<About/>}/>
           <Route path="/login" element={<Login onUpdate={setLogin}/>}/>
           <Route path="/rent" element={<Rent/>}/>

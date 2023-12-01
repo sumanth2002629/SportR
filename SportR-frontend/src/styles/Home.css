@@ -1,0 +1,10 @@
+.App {
+    text-align: center;
+  }
+  
+  .App-header {
+    background: url('../public/bg.jpg') center/cover no-repeat;
+    padding: 328px 0; /* Adjust padding as needed */
+    color: white;
+  }
+  

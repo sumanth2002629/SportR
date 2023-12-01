@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom"
+import "../styles/Home.css"
 
 const Login = ({ onUpdate }) => {
 
@@ -26,42 +27,45 @@ const Login = ({ onUpdate }) => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Login</h2>
-      <Form onSubmit={handleLogin}>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username:</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </Form.Group>
+    <div className="App-header">
+      <div className="container mt-5">
+        <h2>Login</h2>
+        <Form onSubmit={handleLogin}>
+          <Form.Group controlId="formUsername">
+            <Form.Label>Username:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </Form.Group>
 
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <br></br>
 
-        <Button variant="primary" type="submit">
-          Login
-        </Button>
-      </Form>
+          <Button variant="primary" type="submit">
+            Login
+          </Button>
+        </Form>
 
-      <p className="mt-3">
-        Do not have an account?{' '}
-        <span style={{ color: 'blue', cursor: 'pointer' }} onClick={handleRegister}>
-          Register here
-        </span>
-      </p>
+        <p className="mt-3">
+          Do not have an account?{' '}
+          <span style={{ color: 'yellow', cursor: 'pointer' }} onClick={handleRegister}>
+            Register here
+          </span>
+        </p>
+      </div>
     </div>
   );
 };
