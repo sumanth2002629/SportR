@@ -24,7 +24,7 @@ const Login = ({ onUpdate }) => {
       setPassword('')
 
       onUpdate(true)
-      navigate("/")
+      navigate("/Rent")
     } catch (exception) {
       console.log("wrong credentials!")
     }

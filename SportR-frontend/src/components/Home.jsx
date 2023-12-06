@@ -6,7 +6,6 @@ import {useNavigate} from "react-router-dom"
 const Home = ({login}) => {
 
   const navigate = useNavigate()
-
   const Rent = ()=>{
     login?navigate("/Rent"):navigate("/login")
   }
