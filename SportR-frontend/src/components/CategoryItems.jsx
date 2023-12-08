@@ -3,7 +3,9 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CategoryItem from './CategoryItem';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+ 
+
 const equipmentList = {
     "Soccer": ["Soccer Ball", "Soccer Shoes", "Goalkeeper Gloves", "Jersey", "Shin Guards"],
     "Basketball": ["Basketball", "Basketball Shoes", "Basketball Hoop", "Jersey"],
@@ -18,6 +20,10 @@ const equipmentList = {
     // Add more categories and equipment as needed
   };
 function CategoryItems(props) {
+
+    const navigate = useNavigate()
+
+
     const {category}=useParams();
     const items = equipmentList[category] || [];
     console.log(category);

@@ -15,28 +15,20 @@ const Register = () => {
   const handleRegister = async(e) => {
     e.preventDefault();
     // Add your registration logic here.
-    console.log('Registering with:', { username, whatsappNumber, password });
-
     if(password!=confirmPassword) 
     {
       alert("Your password doesn't match with the re-entered password.")
     }
-    else
-    {
-      navigate("/login")
-    }
-
 
     try {
-      const response = await axios.post("http://localhost:3001/register", {username, whatsappNumber, password})
-      const user = response.data
-      console.log(user)
+      const response = await axios.post("http://localhost:3001/user/register", {username, whatsappNumber, password})
       setUsername('')
       setPassword('')
       setWhatsappNumber("")
       setConfirmPassword("")
-    } catch (exception) {
-      console.log("wrong credentials!")
+      navigate("/login")
+    } catch (e) {
+      if(e.response.status==409) alert("User with the username "+ username+" already exists!!")
     }
     
   };

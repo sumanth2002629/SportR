@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Category from './Category';
 import {useNavigate} from "react-router-dom"
-import { useEffect } from "react";
 const categories = [
     'Soccer',
     'Basketball',
@@ -19,14 +18,17 @@ const categories = [
     // Add more categories as needed
   ];
   
-function Rent({loggedin}) {
+function Rent(props) {
     // const [selectedCategory, setSelectedCategory] = useState(null);
+   
+
     const navigate = useNavigate();
       
     const handleCategorySelect = category => {
         navigate('/categories/'+category);
         
     };
+
     return (
         <div>
         <Row xs={1} md={3} className="g-4">

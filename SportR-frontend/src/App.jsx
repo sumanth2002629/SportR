@@ -52,7 +52,7 @@ function App() {
                   </Nav.Link>
                   <Nav.Link>
                     {
-                      login?<Link onClick={()=>{setLogin(false);}} className="nav-link" to="/">Logout</Link>:<></>
+                      login?<Link onClick={()=>{setLogin(false); window.localStorage.removeItem('token');}} className="nav-link" to="/">Logout</Link>:<></>
                     }
                   </Nav.Link>
                 </Nav>  
@@ -69,7 +69,7 @@ function App() {
           <Route path="/categories/:category" element={<CategoryItems loggedin={login}/>}/>
           <Route path="/myaccount" element={<Account loggedin={login}/>}/>
           <Route path="/register" element={<Register/>}/>  
-          <Route path="/additem" element={<Add/>}/>    
+          <Route path="/additem" element={<Add loggedin={login}/>}/>    
         </Routes>
     </Router>
       

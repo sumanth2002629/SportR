@@ -17,31 +17,33 @@ const Login = ({ onUpdate }) => {
     e.preventDefault();
     // Add your login logic here
     try {
-      const response = await axios.post("http://localhost:3001/login", {username,password})
+      const response = await axios.post("http://localhost:3001/user/login", {username,password})
       const user = response.data
       console.log(user)
+
+      window.localStorage.setItem('token', user.token)
+      
       setUsername('')
       setPassword('')
 
       onUpdate(true)
       navigate("/Rent")
     } catch (exception) {
-      console.log("wrong credentials!")
+      if(exception.response.status==401)
+      {
+        alert("Incorrect credentials, try again!!")
+        setUsername('')
+        setPassword('')
+      }
     }
 
     // const x = await axios.get("http://localhost:3001/temp")
-    // console.log(x)
-
-
-    console.log('Logging in with:', { username, password });
-    
+    // console.log(x)    
   };
 
   const handleRegister = () => {
     // Add your registration logic here
-    navigate("/register")
-    console.log('Redirecting to registration page');
-    
+    navigate("/register")    
   };
 
   return (
