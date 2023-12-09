@@ -8,7 +8,9 @@ import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
 import RentForm from './RentForm';
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios'
+
  
 
 const equipmentList = {
@@ -54,23 +56,28 @@ function CategoryItems(props) {
 
     //************Check this************** */
     const handleSubmit = async (item) => {
-        e.preventDefault();
+        // e.preventDefault(); 
         try {
-        const response = await axios.post("http://localhost:3001/rentItem", {
+        
+        const config = {
+            headers: { authorization: "Bearer "+window.localStorage.getItem('token') },
+        }
+        const response = await axios.post("http://localhost:3001/rent/rentItem", {
             category: category,
             item: item,
             quantity: quantity,
             amount: 10,
             rentedOn: new Date(),
             rentedTill: date
-        })
-        
+        }, config)
+         
         navigate("/Rent")
         } catch (exception) {
-        if(exception.response.status==401)
+        if(exception.response.status==403)
         {
-            alert("Some error occured, try again!!")
-            
+            alert("Access Forbidden!!");
+            props.setLogin(false);
+            // navigate("/login");
         }
     }
     };

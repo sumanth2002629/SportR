@@ -22,7 +22,12 @@ import CategoryItems from './components/CategoryItems'
 
 
 function App() {
-  const [login, setLogin] = useState(false)
+  const [login, setLogin] = useState(window.localStorage.getItem('token')?true:false);
+
+  // if(window.localStorage.getItem('token'))
+  // {
+  //   setLogin(true);
+  // }
   
 
   return (
@@ -66,8 +71,8 @@ function App() {
           <Route path="/about" element={<About/>}/>
           <Route path="/login" element={<Login onUpdate={setLogin}/>}/>
           <Route path="/rent" element={<Rent loggedin={login}/>}/>
-          <Route path="/categories/:category" element={<CategoryItems loggedin={login}/>}/>
-          <Route path="/myaccount" element={<Account loggedin={login}/>}/>
+          <Route path="/categories/:category" element={<CategoryItems loggedin={login} setLogin={setLogin}/>}/>
+          <Route path="/myaccount" element={<Account loggedin={login} setLogin={setLogin}/>}/>
           <Route path="/register" element={<Register/>}/>  
           <Route path="/additem" element={<Add loggedin={login}/>}/>    
         </Routes>

@@ -21,7 +21,7 @@ function RentForm(props) {
                     </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="primary" onClick={props.handleSubmit(props.item)}>
+                <Button variant="primary" onClick={()=>{props.handleSubmit(props.item)}}>
                     Submit 
                 </Button>
                 </Modal.Footer>

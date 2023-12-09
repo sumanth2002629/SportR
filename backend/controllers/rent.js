@@ -10,7 +10,7 @@ const rentRouter = express.Router();
 rentRouter.post("/rentItem", auth, async (req,res)=>{
     data = {...req.body, userId: req.user.id};
 
-    const newRent = new rentModel(data);
+    const newRent = new rentModel(data); 
 
     try{
         await newRent.save();

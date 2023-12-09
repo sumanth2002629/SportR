@@ -15,4 +15,4 @@ function Category(props) {
     );
 }
 
-export default Category;
+export default Category; 
