@@ -4,7 +4,7 @@ const dotenv = require("dotenv")
 const cors = require('cors');
 
 const userRoute = require("./controllers/users")
-const auth = require("./middleware/auth");
+const rentRoute = require("./controllers/rent")
 
 const app = express()
 
@@ -13,15 +13,11 @@ app.use(express.json())
 dotenv.config()
 
 app.use("/user",userRoute)
-
-
-  app.get("/temp",(req,res)=>{
-    console.log(req.get("authorization"))
-  })
+app.use("/rent",rentRoute)
 
 
 const DB_URL = process.env.DB_URL
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000 
   
 mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))

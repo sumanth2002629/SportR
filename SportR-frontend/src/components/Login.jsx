@@ -36,9 +36,6 @@ const Login = ({ onUpdate }) => {
         setPassword('')
       }
     }
-
-    // const x = await axios.get("http://localhost:3001/temp")
-    // console.log(x)    
   };
 
   const handleRegister = () => {
