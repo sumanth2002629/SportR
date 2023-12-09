@@ -4,6 +4,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CategoryItem from './CategoryItem';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal'
+import RentForm from './RentForm';
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
  
 
 const equipmentList = {
@@ -26,7 +31,49 @@ function CategoryItems(props) {
 
     const {category}=useParams();
     const items = equipmentList[category] || [];
-    console.log(category);
+    // console.log(category);
+    const [isOpen, setOpen]=useState(false);
+    const [selectedItem, setItem]=useState('');
+    const handleRent=(item)=>{
+        setItem(item);
+        setOpen(true);
+    };
+    const [quantity, setQuantity]=useState(1);
+    const [date, setDate]=useState(2);
+    const onQuantityChange=(event)=>{
+        setQuantity(event.target.value);
+    };
+    const onDateChange=(event)=>{
+        setDate(event.target.value);
+    };
+    //   openModal = () => this.setState({ isOpen: true });
+    const closeModal = () => {
+        console.log("Hello");
+        setOpen(false);
+    }
+
+    //************Check this************** */
+    const handleSubmit = async (item) => {
+        e.preventDefault();
+        try {
+        const response = await axios.post("http://localhost:3001/rentItem", {
+            category: category,
+            item: item,
+            quantity: quantity,
+            amount: 10,
+            rentedOn: new Date(),
+            rentedTill: date
+        })
+        
+        navigate("/Rent")
+        } catch (exception) {
+        if(exception.response.status==401)
+        {
+            alert("Some error occured, try again!!")
+            
+        }
+    }
+    };
     return (
         <div>
             <Row xs={1} md={3} className="g-4">
@@ -36,12 +83,16 @@ function CategoryItems(props) {
                     <Card.Body>
                         <Card.Title>
                             <CategoryItem key={index} index={index} item={item}/>
+                            <Button varient="success" as="input" type="submit" value="Rent" onClick={()=>handleRent(item)}/>{' '}
+                            
+                            {/*  */}
                         </Card.Title>
                     </Card.Body>
                     </Card>
                 </Col>
                 ))}
             </Row>
+            { isOpen ? <RentForm item={selectedItem} handleClose={closeModal} isOpen={isOpen} handleSubmit={handleSubmit} onQuantityChange={onQuantityChange} onDateChange={onDateChange} date={date} quantity={quantity}/>: null }
         {/* {categories.map((category, index) => (
                         <Category key={index} index={index} category={category}/>
                     ))} */}
