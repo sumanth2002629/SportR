@@ -79,6 +79,12 @@ function CategoryItems(props) {
             props.setLogin(false);
             // navigate("/login");
         }
+        else if(exception.response.status==400)
+        {
+            alert("Token expired! Login again");
+            props.setLogin(false);
+            navigate("/login");
+        }
     }
     };
     return (

@@ -2,9 +2,9 @@
     text-align: center;
   }
   
-  .App-header {
-    background: url('../bg.jpg') center/cover no-repeat;
-    padding: 328px 0; /* Adjust padding as needed */
-    color: white;
-  }
+.App-header {
+  background: url('../bg.jpg') center/cover no-repeat;
+  padding: 328px 0; /* Adjust padding as needed */
+  color: white;
+}
   

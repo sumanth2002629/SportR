@@ -28,7 +28,7 @@ const Account = (props) => {
       }
       else if(e.response.status==404)
       {
-          alert("No rented items!!");
+          alert("No rented items!!");items
       }
       else if(e.response.status==400)
       {

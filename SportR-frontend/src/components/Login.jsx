@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import {useNavigate} from "react-router-dom"
-import "../styles/Home.css"
-import axios from 'axios'
+import {useNavigate} from "react-router-dom";
+// import "../styles/Home.css";
+import axios from 'axios';
 
 
-//Token Storage is yet to be done
 const Login = ({ onUpdate }) => {
 
   const [username, setUsername] = useState('');
