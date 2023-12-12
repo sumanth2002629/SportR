@@ -8,16 +8,16 @@ FROM node:20-alpine
 WORKDIR /usr/src/app
 
 # Copy the package.json and package-lock.json files to the "app" folder
-COPY package*.json ./
+COPY . .
 
 # Install the dependencies mentioned in package.json
 RUN npm install
 
-# Copy the local files to the "app" folder
-COPY . .
+RUN npm run build
+
+RUN npm install -g serve
 
 # Expose port 5173 on the host machine to the container for listening to external connections
-EXPOSE 5173
 
 # Start the React applications
-CMD ["npm", "run", "dev"]
+CMD ["serve", "dist"]

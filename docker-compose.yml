@@ -4,28 +4,28 @@ services:
   test_db:
     image: mongo:latest
     volumes:
-      - test_db:/data/db 
+      - test_db_vol:/data/db 
   db:
     image: mongo:latest
     volumes:
-      - db:/data/db
+      - db_vol:/data/db
   frontend:
     build: ./SportR-frontend
     ports:
-      - 5173:5173
+      - 3000:3000
   backend:
     build: ./backend
     ports:
       - 3001:3001
     environment:
       SECRET: hello
-      DB_URL: mongodb://db:27107/
-      TEST_DB_URL: mongodb://test_db:27107/
+      DB_URL: mongodb://db:27017/
+      TEST_DB_URL: mongodb://test_db:27017/
       PORT: 3001
     links:
       - db
       - test_db
 
 volumes:
-  db: 
-  test_db: 
+  db_vol: 
+  test_db_vol: 
