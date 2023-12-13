@@ -14,6 +14,6 @@ COPY . .
 # Install the dependencies mentioned in package.json
 
 # Expose port 3001 on the host machine to the container for listening to external connections
-# EXPOSE 3001
+EXPOSE 3001
 
 CMD ["npm", "start"]
