@@ -4,6 +4,7 @@ services:
   db:
     container_name: db
     image: mongo:latest
+    restart: always
     volumes:
       - db_vol:/data/db
     networks:
@@ -15,6 +16,9 @@ services:
       - 3000:3000
     networks:
       - sportr
+    depends_on:
+      - db
+      - backend
   backend:
     container_name: backend
     image: sumanthbadam/sportr-backend:latest    
@@ -24,6 +28,8 @@ services:
       SECRET: hello
       DB_URL: mongodb://db:27017/
       PORT: 3001
+    depends_on:
+      - db
     links:
       - db
     networks:
