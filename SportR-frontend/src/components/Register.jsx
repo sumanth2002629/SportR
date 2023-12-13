@@ -53,7 +53,7 @@ const Register = () => {
           <Form.Group controlId="formWhatsappNumber">
             {/* <Form.Label>WhatsApp Number:</Form.Label> */}
             <Form.Control
-              type="number"
+              type="text"
               placeholder="WhatsApp number"
               value={whatsappNumber}
               onChange={(e) => setWhatsappNumber(e.target.value)}
