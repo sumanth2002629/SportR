@@ -3,8 +3,16 @@
   }
   
 .App-header {
-  background: url('../bg.jpg') center/cover no-repeat;
-  padding: 328px 0; /* Adjust padding as needed */
-  color: white;
+  background: url('../new_bg.jpg') center/cover no-repeat;
+  padding: 10% 0; /* Adjust padding as needed */
+  /* color: white; */
 }
   
+.navlink{
+  transition: all ease 200ms;
+}
+.navlink:hover{
+  transform:scale(1.05);
+  color: white !important;
+  text-shadow: 10px white !important;
+}

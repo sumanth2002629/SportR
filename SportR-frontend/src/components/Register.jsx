@@ -34,55 +34,56 @@ const Register = () => {
   };
 
   return (
-    <div className="App-header">
-      <div className="container mt-5">
-        <h2>Register</h2>
+    <div className="App-header" style={{paddingTop:"2%"}}>
+      <div className="container mt-5" style={{width:"35%", textAlign:'center', justifyContent: "center", alignItems: "center", height:'50%', border:'2px solid black', padding:'3%', paddingTop:"2%", boxShadow:'3px 3px 2px 3px gray', borderRadius:"5%", background:"#2b3035", color:'white'}}>
+        <h2 style={{textAlign:'center'}}>Join the sport revolution !</h2>
+        <br />
         <Form onSubmit={handleRegister}>
           <Form.Group controlId="formUsername">
-            <Form.Label>Username:</Form.Label>
+            {/* <Form.Label>Username:</Form.Label> */}
             <Form.Control
               type="text"
-              placeholder="Enter your username"
+              placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
           </Form.Group>
-
+          <br />
           <Form.Group controlId="formWhatsappNumber">
-            <Form.Label>WhatsApp Number:</Form.Label>
+            {/* <Form.Label>WhatsApp Number:</Form.Label> */}
             <Form.Control
               type="number"
-              placeholder="Enter your WhatsApp number"
+              placeholder="WhatsApp number"
               value={whatsappNumber}
               onChange={(e) => setWhatsappNumber(e.target.value)}
               required
             />
           </Form.Group>
-
+          <br />
           <Form.Group controlId="formPassword">
-            <Form.Label>Password:</Form.Label>
+            {/* <Form.Label>Password:</Form.Label> */}
             <Form.Control
               type="password"
-              placeholder="Enter your password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </Form.Group>
-
+          <br />
           <Form.Group controlId="formConfirmPassword">
-            <Form.Label>Re-enter Password:</Form.Label>
+            {/* <Form.Label>Re-enter Password:</Form.Label> */}
             <Form.Control
               type="password"
-              placeholder="Re-enter your password"
+              placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
           </Form.Group>
           <br></br>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" style={{}}>
             Register
           </Button>
         </Form>

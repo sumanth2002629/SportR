@@ -11,25 +11,27 @@ const Home = ({login}) => {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="App-header" style={{justifyContent:"center", alignItems:"center", textAlign:"center", paddingTop:"10%", paddingBottom:"15%"}}>
+      <div className="" style={{justifyContent:"center", alignItems:"center", textAlign:"center"}}>
         <Container>
           <Row>
             <Col>
               <h1>Take any Sport equipment for Rent.</h1>
               <br></br>
+              <br />
               <h5>Explore a world of sports activities!</h5>
               <br></br>
               <br></br>
-              <Button variant="light" onClick={Rent}>Take for Rent</Button>
+              <br />
+              <Button variant="dark" onClick={Rent}>Take for Rent</Button>
             </Col>
-            <Col>
-              {/* You can replace the image URL with your own sports-related image */}
+            {/* <Col>
+              
               <div className="background-image"></div>
-            </Col>
+            </Col> */}
           </Row>
         </Container>
-      </header>
+      </div>
     </div>
   );
 };

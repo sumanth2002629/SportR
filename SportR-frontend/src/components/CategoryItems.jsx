@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CategoryItem from './CategoryItem';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Stack } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
 import RentForm from './RentForm';
 import React, { useState } from 'react';
@@ -88,27 +88,28 @@ function CategoryItems(props) {
     }
     };
     return (
-        <div>
-            <Row xs={1} md={3} className="g-4">
-                {(items).map((item, index) => (
-                <Col key={item}>
-                    <Card onClick={() => {}} style={{ cursor: 'pointer' }}>
-                    <Card.Body>
-                        <Card.Title>
-                            <CategoryItem key={index} index={index} item={item}/>
-                            <Button varient="success" as="input" type="submit" value="Rent" onClick={()=>handleRent(item)}/>{' '}
-                            
-                            {/*  */}
-                        </Card.Title>
-                    </Card.Body>
-                    </Card>
-                </Col>
-                ))}
-            </Row>
-            { isOpen ? <RentForm item={selectedItem} handleClose={closeModal} isOpen={isOpen} handleSubmit={handleSubmit} onQuantityChange={onQuantityChange} onDateChange={onDateChange} date={date} quantity={quantity}/>: null }
-        {/* {categories.map((category, index) => (
-                        <Category key={index} index={index} category={category}/>
-                    ))} */}
+        <div className="App-header" style={{}}>
+            <div style={{ alignItems:"center", justifyContent:"center", paddingLeft:"2%"}}>
+                
+                <Row xs={1} sm={2} md={3} className="g-4" style={{alignItems:"center", justifyContent:"center"}}>
+                    {(items).map((item, index) => (
+                    <Col key={item}>
+                        <Card className="card" data-bs-theme='dark' onClick={() => {}} style={{ cursor: 'pointer', width: "70%", height:"90%", justifyContent:"center", alignItems:"center"}}>
+                        <Card.Body>
+                            <Card.Title>
+                                <CategoryItem key={index} index={index} item={item} handleRent={handleRent}/>
+                            </Card.Title>
+                        </Card.Body>
+                        </Card>
+                    </Col>
+                    ))}
+                </Row>
+                
+                { isOpen ? <RentForm item={selectedItem} handleClose={closeModal} isOpen={isOpen} handleSubmit={handleSubmit} onQuantityChange={onQuantityChange} onDateChange={onDateChange} date={date} quantity={quantity}/>: null }
+            {/* {categories.map((category, index) => (
+                            <Category key={index} index={index} category={category}/>
+                        ))} */}
+            </div>
         </div>
     )
 }

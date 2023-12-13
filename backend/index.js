@@ -18,7 +18,7 @@ app.use("/rent",rentRoute)
 
 const DB_URL = process.env.NODE_ENV === 'test' ? process.env.TEST_DB_URL : process.env.DB_URL
 const PORT = process.env.PORT || 5000 
-  
+console.log(DB_URL)
 mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
     .catch((error) => console.log(error.message))
