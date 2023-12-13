@@ -13,7 +13,7 @@ services:
       - sportr
   frontend:
     container_name: frontend
-    image: sumanthbadam/sportr-frontend:latest
+    image: kdesh2001/sportr-frontend:latest
     ports:
       - 3000:3000
     networks:
@@ -23,7 +23,7 @@ services:
       - backend
   backend:
     container_name: backend
-    image: sumanthbadam/sportr-backend:latest    
+    image: kdesh2001/sportr-backend:latest    
     ports:
       - 3001:3001
     environment:
