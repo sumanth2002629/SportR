@@ -5,6 +5,8 @@ services:
     container_name: db
     image: mongo:4.2
     restart: always
+    ports:
+      - 27017:27017
     volumes:
       - db_vol:/data/db
     networks:
@@ -40,4 +42,4 @@ networks:
     driver: bridge
 
 volumes:
-  db_vol: 
+  db_vol: {}
