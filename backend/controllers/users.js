@@ -13,9 +13,15 @@ userRouter.post('/register', async (req, res) => {
     console.log("hi")
     const saltRounds = 10
     console.log("here is ", password)
-    // const passwordHash = await bcrypt.hash(password, saltRounds)
+    try{
+        const passwordHash = bcrypt.hashSync(password, saltRounds)
+    }
+    catch(e){
+        console.log(e)
+        res.status(409).json(e.code)
+    }
     console.log("hi2")
-    const newUser = new userModel({name:username, phone:number, hash:password})
+    const newUser = new userModel({name:username, phone:number, hash:passwordHash})
     console.log("hi3")
     try{
         console.log("hi4")
