@@ -1,31 +1,27 @@
 version: "3.9"
 
 services:
-  test_db:
-    image: mongo:latest
-    volumes:
-      - test_db_vol:/data/db 
   db:
+    container_name: db
     image: mongo:latest
     volumes:
       - db_vol:/data/db
   frontend:
-    build: ./SportR-frontend
+    container_name: frontend
+    image: sumanthbadam/sportr-frontend:latest
     ports:
       - 3000:3000
   backend:
-    build: ./backend
+    container_name: backend
+    image: sumanthbadam/sportr-backend:latest    
     ports:
       - 3001:3001
     environment:
       SECRET: hello
       DB_URL: mongodb://db:27017/
-      TEST_DB_URL: mongodb://test_db:27017/
       PORT: 3001
     links:
       - db
-      - test_db
 
 volumes:
   db_vol: 
-  test_db_vol: 
