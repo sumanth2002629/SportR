@@ -1,6 +1,8 @@
 ---
 - name: Deploy Docker Images
   hosts: localhost
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
   tasks:
     - name: Copy Docker Compose file from host machine to remote host
       copy:
