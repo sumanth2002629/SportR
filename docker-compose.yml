@@ -27,7 +27,7 @@ services:
       - 3001:3001
     environment:
       SECRET: hello
-      DB_URL: mongodb://db:27017/
+      DB_URL: mongodb://db:27017/sportr
       PORT: 3001
     depends_on:
       - db
