@@ -21,7 +21,7 @@
     # Detached mode is required, otherwise Jenkins build never exits
     # even though the docker-compose up command has successfully executed
     - name: Run the pulled Docker images in detached mode
-      command: docker compose up -d
+      command: docker-compose up -d
 
     # This is added so that the Docker images of the previous builds
     # which will now become dangling images are removed
