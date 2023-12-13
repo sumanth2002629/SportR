@@ -31,5 +31,5 @@
 
     # This is added so that the Docker images of the previous builds
     # which will now become dangling images are removed
-    - name: Prune the dangling Docker images
-      command: docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+    # - name: Prune the dangling Docker images
+    #   command: docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
