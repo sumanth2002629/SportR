@@ -11,17 +11,17 @@ const userRouter = express.Router();
 userRouter.post('/register', async (req, res) => {
     const { username,number, password } = req.body
     console.log("hi")
-    const saltRounds = 10
+    // const saltRounds = 10
     console.log("here is ", password)
-    try{
-        const passwordHash = bcrypt.hashSync(password, saltRounds)
-    }
-    catch(e){
-        console.log(e)
-        res.status(409).json(e.code)
-    }
+    // try{
+    //     const passwordHash = bcrypt.hashSync(password, saltRounds)
+    // }
+    // catch(e){
+    //     console.log(e)
+    //     res.status(409).json(e.code)
+    // }
     console.log("hi2")
-    const newUser = new userModel({name:username, phone:number, hash:passwordHash})
+    const newUser = new userModel({name:username, phone:number, hash:password})
     console.log("hi3")
     try{
         console.log("hi4")
@@ -52,7 +52,7 @@ userRouter.post('/login', async (req, res) => {
 
     const passwordCorrect = user === null
     ? false 
-    : await bcrypt.compare(password, user.hash)
+    : password===user.hash
 
     if (!(user && passwordCorrect)) {
     return res.status(401).json({
