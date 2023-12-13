@@ -20,6 +20,10 @@
     # Now we actually run the Docker containers because the env.yaml has been copied and the app will no longer crash
     # Detached mode is required, otherwise Jenkins build never exits
     # even though the docker-compose up command has successfully executed
+    - name: Start docker service
+      service:
+        name: docker
+        state: started
     - name: Run the pulled Docker images in detached mode
       command: docker-compose up -d
 
