@@ -6,11 +6,15 @@ services:
     image: mongo:latest
     volumes:
       - db_vol:/data/db
+    networks:
+      - sportr
   frontend:
     container_name: frontend
     image: sumanthbadam/sportr-frontend:latest
     ports:
       - 3000:3000
+    networks:
+      - sportr
   backend:
     container_name: backend
     image: sumanthbadam/sportr-backend:latest    
@@ -22,6 +26,12 @@ services:
       PORT: 3001
     links:
       - db
+    networks:
+      - sportr
+
+networks:
+  sportr:
+    driver: bridge
 
 volumes:
   db_vol: 
