@@ -25,7 +25,7 @@
         name: docker
         state: started
     - name: Run the pulled Docker images in detached mode
-      command: docker-compose up -d
+      command: docker-compose up -d --verbose
 
     # This is added so that the Docker images of the previous builds
     # which will now become dangling images are removed
