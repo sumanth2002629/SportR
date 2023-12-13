@@ -27,9 +27,9 @@
         name: docker
         state: started
     - name: Run the pulled Docker images in detached mode
-      command: docker-compose up -d --verbose
+      command: docker-compose up -d
 
     # This is added so that the Docker images of the previous builds
     # which will now become dangling images are removed
     - name: Prune the dangling Docker images
-      command: docker image prune --force
+      command: docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
