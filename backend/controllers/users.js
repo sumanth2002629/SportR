@@ -10,18 +10,23 @@ const userRouter = express.Router();
 
 userRouter.post('/register', async (req, res) => {
     const { username,number, password } = req.body
-  
+    console.log("hi")
     const saltRounds = 10
     const passwordHash = await bcrypt.hash(password, saltRounds)
-
+    console.log("hi2")
     const newUser = new userModel({name:username, phone:number, hash:passwordHash})
-  
+    console.log("hi3")
     try{
+        console.log("hi4")
         await newUser.save()
+        console.log("hi5")
         res.status(201).json({username,number})
+        console.log("hi6")
     }
     catch(e){
+        console.log("hi7")
         res.status(409).json(e.code)
+        console.log("hi8")
     }
 })
   
