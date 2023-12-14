@@ -26692,3 +26692,5 @@ Method: GET
 Path:  /rent/rentedItems
 Body:  [object Object]
 ---
+Server running on port: 3001
+---
