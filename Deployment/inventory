@@ -1,0 +1,1 @@
+localhost ansible_user=kdesh2001 ansible_connection=local
