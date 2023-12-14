@@ -2,10 +2,13 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button } from 'react-bootstrap';
+// import DatePicker from "react-date-picker";
 import { useState } from 'react';
 function RentForm(props) {
     
     // const title="Rent "+props.item;
+    const [date, setDate] = useState(1);
+    const [quantity, setQuantity] = useState('');
     return(
         <div>
             <Modal show={props.isOpen} onHide={props.handleClose}>
@@ -15,13 +18,20 @@ function RentForm(props) {
                 <Modal.Body>
                     <Form.Group >
                         <Form.Label>Quantity: </Form.Label>
-                        <Form.Control type="number"  onChange={props.onQuantityChange} value={props.quantity}/>
+                        <Form.Control type="number"  onChange={(e)=>{setQuantity(e.target.value)}} value={quantity}/>
                         <Form.Label>Rent till: </Form.Label>
-                        <Form.Control type="date"  onChange={props.onDateChange} value={props.date}/>
+                        <Form.Control type="date"  onChange={(e) =>
+                setDate((prevDate) => {
+                  new Date(e.target.value).toISOString().split('T')[0];
+                })
+              } value={date}/>
+                        {/* <input type="date"  onChange={props.onDateChange} value={props.date}/> */}
+                        {/* <DatePicker onChange={props.onDateChange} value={props.date} /> */}
                     </Form.Group>
+                    
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="primary" onClick={()=>{props.handleSubmit(props.item)}}>
+                <Button variant="primary" onClick={()=>{props.handleSubmit(props.item, date, quantity)}}>
                     Submit 
                 </Button>
                 </Modal.Footer>

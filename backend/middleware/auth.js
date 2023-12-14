@@ -11,7 +11,7 @@ const getTokenFrom = request => {
 
 const auth = (req,res,next) => {
     const userModel = require("../models/User")
-
+    console.log(getTokenFrom(req));
     try{        
         if (getTokenFrom(req) === null) 
         {
@@ -22,12 +22,14 @@ const auth = (req,res,next) => {
         req.user = decodedToken;
 
         const user = userModel.findById(req.user.id)
-
+        // console.log("User is", user)
         if(!user){
+            console.log("reached here")
             return res.status(404).send("User not found");
         }
-
+        console.log("helooooo");
         next();
+        console.log("hello3");
     }
     catch(e){
         res.status(400).send("Invalid Token");

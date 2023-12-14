@@ -43,17 +43,17 @@ function App() {
                 </Navbar.Brand>
                 <Nav className="ms-auto">
                   <Nav.Link className='navlink'><Link to="/" className="nav-link">Home</Link></Nav.Link>
-                  <Nav.Link className='navlink'><Link to="/about" className="nav-link">About</Link></Nav.Link>
+                  {/* <Nav.Link className='navlink'><Link to="/about" className="nav-link">About</Link></Nav.Link> */}
                   <Nav.Link className='navlink'>
                     {
                       login?<Link to="/rent" className="nav-link">Rent</Link>:<Link to="/login" className="nav-link">Login</Link>
                     }
                   </Nav.Link>
-                  <Nav.Link className='navlink'>
+                  {/* <Nav.Link className='navlink'>
                     {
                       login?<Link to="/additem" className="nav-link">Add</Link>:<></>
                     }
-                  </Nav.Link>
+                  </Nav.Link> */}
                   <Nav.Link className='navlink'>
                     {
                       login?<Link to="/myaccount" className="nav-link">My Account</Link>:<></>

@@ -65,7 +65,7 @@ userRouter.post('/login', async (req, res) => {
         id: user._id,
     }
 
-    const token = jwt.sign(userForToken, process.env.SECRET,{ expiresIn: 60*1 })
+    const token = jwt.sign(userForToken, process.env.SECRET,{ expiresIn: 60*30 })
 
     res
     .status(200)
@@ -73,11 +73,11 @@ userRouter.post('/login', async (req, res) => {
 })
 
 userRouter.post("/changePassword", auth, async (req,res)=>{
-    const { username, oldPassword, newPassword } = req.body
+    const { oldPassword, newPassword } = req.body
 
     let user;
     try{
-         user = await userModel.findOne({name:username})
+         user = await userModel.findOne({name:req.user.username})
     }
     catch(e){
         res.status(404).json({ message: e.message });
@@ -85,7 +85,7 @@ userRouter.post("/changePassword", auth, async (req,res)=>{
 
     const passwordCorrect = user === null
     ? false 
-    : await bcrypt.compare(oldPassword, user.hash)
+    : await oldPassword===user.hash
 
     if (!(user && passwordCorrect)) {
     return res.status(401).json({
@@ -93,11 +93,11 @@ userRouter.post("/changePassword", auth, async (req,res)=>{
     })
     }
 
-    const saltRounds = 10
-    const passwordHash = await bcrypt.hash(newPassword, saltRounds)
+    // const saltRounds = 10
+    // const passwordHash = await bcrypt.hash(newPassword, saltRounds)
 
     try{
-        await userModel.updateOne({name:username}, {hash:passwordHash});
+        await userModel.updateOne({name:user.name}, {hash:newPassword});
         res.status(200).json({message:"Password changed successfully"});
     }
     catch(e){
@@ -105,7 +105,50 @@ userRouter.post("/changePassword", auth, async (req,res)=>{
     }
 })
 
-userRouter.delete("/deleteUser", auth, async (req,res)=>{
+userRouter.post("/changePhone", auth, async (req,res)=>{
+    console.log("heloo2");
+    const { password, newPhone} = req.body;
+    // const userId = req.user.userId;
+    
+    let user;
+    console.log("User is ",req.user.username);
+    try{
+         user = await userModel.findById(req.user.id)
+    }
+    catch(e){
+        console.log(e.message);
+        // res.status(401).json({});
+        res.status(404).json({ message: e.message });
+    }
+
+    const passwordCorrect = user === null
+    ? false 
+    : await password===user.hash
+
+    if (!(user && passwordCorrect)) {
+    return res.status(401).json({
+        error: 'invalid username or password'
+    })
+    }
+
+    // const saltRounds = 10
+    // const passwordHash = await bcrypt.hash(newPassword, saltRounds)
+
+    try{req.user.id
+        await userModel.updateOne({name:user.name}, {phone:newPhone});
+        const checkUser = await userModel.findOne({name:user.name});
+        console.log(checkUser.phone);
+        res.status(200).json({message:"Phone changed successfully"});
+    }
+    catch(e){
+        console.log("Error");
+        res.status(409).json({message:e.message});
+    }
+})
+
+userRouter.post("/deleteUser", auth, async (req,res)=>{
+    console.log("hello again")
+    const {password} = req.body;
     const username = req.user.username
 
     let user;
@@ -115,10 +158,12 @@ userRouter.delete("/deleteUser", auth, async (req,res)=>{
     catch(e){
         res.status(404).json({ message: e.message });
     }
-
-    if (!(user)) {
+    const passwordCorrect = user === null
+    ? false 
+    : await password===user.hash
+    if (!(user && passwordCorrect)) {
         return res.status(401).json({
-            error: 'invalid username or password'
+            error: 'Invalid username or password'
         })
     }
 

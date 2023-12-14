@@ -13,19 +13,87 @@ import axios from 'axios'
 
  
 
+// const equipmentList = {
+//     "Soccer": ["Soccer Ball", "Soccer Shoes", "Goalkeeper Gloves", "Jersey", "Shin Guards"],
+//     "Basketball": ["Basketball", "Basketball Shoes", "Basketball Hoop", "Jersey"],
+//     "Tennis": ["Tennis Racket", "Tennis Balls", "Tennis Shoes", "Tennis Bag"],
+//     "Baseball": ["Baseball Bat", "Baseball Glove", "Baseballs", "Baseball Cap"],
+//     "Golf": ["Golf Clubs", "Golf Balls", "Golf Shoes", "Golf Bag", "Golf Gloves"],
+//     "Fitness": ["Dumbbells", "Yoga Mat", "Resistance Bands", "Jump Rope", "Exercise Ball"],
+//     "Cycling": ["Bicycle", "Helmet", "Bike Lock", "Cycling Shoes"],
+//     "Running": ["Running Shoes", "Running Shorts", "Water Bottle", "Reflective Gear"],
+//     "Swimming": ["Swimsuit", "Swim Goggles", "Swim Cap", "Kickboard", "Fins"],
+//     "Outdoor Recreation": ["Camping Tent", "Hiking Boots", "Backpack", "Sleeping Bag"]
+//     // Add more categories and equipment as needed
+//   };
 const equipmentList = {
-    "Soccer": ["Soccer Ball", "Soccer Shoes", "Goalkeeper Gloves", "Jersey", "Shin Guards"],
-    "Basketball": ["Basketball", "Basketball Shoes", "Basketball Hoop", "Jersey"],
-    "Tennis": ["Tennis Racket", "Tennis Balls", "Tennis Shoes", "Tennis Bag"],
-    "Baseball": ["Baseball Bat", "Baseball Glove", "Baseballs", "Baseball Cap"],
-    "Golf": ["Golf Clubs", "Golf Balls", "Golf Shoes", "Golf Bag", "Golf Gloves"],
-    "Fitness": ["Dumbbells", "Yoga Mat", "Resistance Bands", "Jump Rope", "Exercise Ball"],
-    "Cycling": ["Bicycle", "Helmet", "Bike Lock", "Cycling Shoes"],
-    "Running": ["Running Shoes", "Running Shorts", "Water Bottle", "Reflective Gear"],
-    "Swimming": ["Swimsuit", "Swim Goggles", "Swim Cap", "Kickboard", "Fins"],
-    "Outdoor Recreation": ["Camping Tent", "Hiking Boots", "Backpack", "Sleeping Bag"]
+    "Soccer": [
+      { name: "Soccer Ball", rentPrice: 75 },
+      { name: "Soccer Shoes", rentPrice: 150 },
+      { name: "Goalkeeper Gloves", rentPrice: 120 },
+      { name: "Jersey", rentPrice: 105 },
+      { name: "Shin Guards", rentPrice: 75 }
+    ],
+    "Basketball": [
+      { name: "Basketball", rentPrice: 75 },
+      { name: "Basketball Shoes", rentPrice: 150 },
+      { name: "Basketball Hoop", rentPrice: 225 },
+      { name: "Jersey", rentPrice: 105 }
+    ],
+    "Tennis": [
+      { name: "Tennis Racket", rentPrice: 150 },
+      { name: "Tennis Balls", rentPrice: 75 },
+      { name: "Tennis Shoes", rentPrice: 180 },
+      { name: "Tennis Bag", rentPrice: 120 }
+    ],
+    "Baseball": [
+      { name: "Baseball Bat", rentPrice: 120 },
+      { name: "Baseball Glove", rentPrice: 150 },
+      { name: "Baseballs", rentPrice: 45 },
+      { name: "Baseball Cap", rentPrice: 75 }
+    ],
+    "Golf": [
+      { name: "Golf Clubs", rentPrice: 225 },
+      { name: "Golf Balls", rentPrice: 75 },
+      { name: "Golf Shoes", rentPrice: 180 },
+      { name: "Golf Bag", rentPrice: 150 },
+      { name: "Golf Gloves", rentPrice: 120 }
+    ],
+    "Fitness": [
+      { name: "Dumbbells", rentPrice: 90 },
+      { name: "Yoga Mat", rentPrice: 75 },
+      { name: "Resistance Bands", rentPrice: 120 },
+      { name: "Jump Rope", rentPrice: 60 },
+      { name: "Exercise Ball", rentPrice: 105 }
+    ],
+    "Cycling": [
+      { name: "Bicycle", rentPrice: 300 },
+      { name: "Helmet", rentPrice: 75 },
+      { name: "Bike Lock", rentPrice: 45 },
+      { name: "Cycling Shoes", rentPrice: 150 }
+    ],
+    "Running": [
+      { name: "Running Shoes", rentPrice: 180 },
+      { name: "Running Shorts", rentPrice: 105 },
+      { name: "Water Bottle", rentPrice: 30 },
+      { name: "Reflective Gear", rentPrice: 75 }
+    ],
+    "Swimming": [
+      { name: "Swimsuit", rentPrice: 120 },
+      { name: "Swim Goggles", rentPrice: 75 },
+      { name: "Swim Cap", rentPrice: 45 },
+      { name: "Kickboard", rentPrice: 90 },
+      { name: "Fins", rentPrice: 105 }
+    ],
+    "Outdoor Recreation": [
+      { name: "Camping Tent", rentPrice: 225 },
+      { name: "Hiking Boots", rentPrice: 150 },
+      { name: "Backpack", rentPrice: 120 },
+      { name: "Sleeping Bag", rentPrice: 180 }
+    ]
     // Add more categories and equipment as needed
   };
+  
 function CategoryItems(props) {
 
     const navigate = useNavigate()
@@ -36,27 +104,49 @@ function CategoryItems(props) {
     // console.log(category);
     const [isOpen, setOpen]=useState(false);
     const [selectedItem, setItem]=useState('');
-    const handleRent=(item)=>{
+    const [price, setPrice]=useState(100);
+    const [quantity, setQuantity]=useState(1);
+    const [date, setDate]=useState('');
+    // const [days, setDays]=useState(1);
+    // const [bill, setBill]=useState(price*quantity*days);
+    const handleRent=(item, price)=>{
         setItem(item);
+        setPrice(price);
+        console.log(price)
         setOpen(true);
     };
-    const [quantity, setQuantity]=useState(1);
-    const [date, setDate]=useState(2);
-    const onQuantityChange=(event)=>{
-        setQuantity(event.target.value);
-    };
-    const onDateChange=(event)=>{
-        setDate(event.target.value);
-    };
+    
+    // const onQuantityChange=(event)=>{
+    //     setQuantity(event.target.value);
+    //     console.log(quantity)
+    //     // setBill(price*quantity*days);
+    // };
+    // const onDateChange=(event)=>{
+    //     event.preventDefault();
+    //     // setDate(Date(event.target.value));
+    //     // console.log("selected is", date)
+    //     // console.log(new Date()+2)
+    //     // setDays(Math.round((date.getTime()-(new Date()).getTime())/(1000*3600*24)))
+    //     // setBill(price*quantity*days);
+    //     const selectedDate = event.target.value;
+    
+    // // Format the date to "yyyy-MM-dd"
+    //     const formattedDate = new Date(selectedDate).toISOString().split('T')[0];
+        
+    //     setDate(formattedDate);
+    //     console.log(date);
+    // };
     //   openModal = () => this.setState({ isOpen: true });
     const closeModal = () => {
-        console.log("Hello");
+        // console.log("Hello");
         setOpen(false);
     }
 
     //************Check this************** */
-    const handleSubmit = async (item) => {
+    const handleSubmit = async (item, fdate, fquantity) => {
         // e.preventDefault(); 
+        setDate(fdate);
+        setQuantity(fquantity);
         try {
         
         const config = {
@@ -66,7 +156,7 @@ function CategoryItems(props) {
             category: category,
             item: item,
             quantity: quantity,
-            amount: 10,
+            amount: price,
             rentedOn: new Date(),
             rentedTill: date
         }, config)
@@ -88,16 +178,16 @@ function CategoryItems(props) {
     }
     };
     return (
-        <div className="App-header" style={{}}>
+        <div className="App-header" style={{paddingTop:"5%"}}>
             <div style={{ alignItems:"center", justifyContent:"center", paddingLeft:"2%"}}>
                 
                 <Row xs={1} sm={2} md={3} className="g-4" style={{alignItems:"center", justifyContent:"center"}}>
                     {(items).map((item, index) => (
-                    <Col key={item}>
+                    <Col key={index}>
                         <Card className="card" data-bs-theme='dark' onClick={() => {}} style={{ cursor: 'pointer', width: "70%", height:"90%", justifyContent:"center", alignItems:"center"}}>
                         <Card.Body>
                             <Card.Title>
-                                <CategoryItem key={index} index={index} item={item} handleRent={handleRent}/>
+                                <CategoryItem key={index} index={index} item={item.name} price={item.rentPrice} handleRent={handleRent}/>
                             </Card.Title>
                         </Card.Body>
                         </Card>
@@ -105,7 +195,7 @@ function CategoryItems(props) {
                     ))}
                 </Row>
                 
-                { isOpen ? <RentForm item={selectedItem} handleClose={closeModal} isOpen={isOpen} handleSubmit={handleSubmit} onQuantityChange={onQuantityChange} onDateChange={onDateChange} date={date} quantity={quantity}/>: null }
+                { isOpen ? <RentForm list={items} item={selectedItem} handleClose={closeModal} isOpen={isOpen} handleSubmit={handleSubmit} setQuantity={setQuantity} setDate={setDate} date={date} quantity={quantity}/>: null }
             {/* {categories.map((category, index) => (
                             <Category key={index} index={index} category={category}/>
                         ))} */}
