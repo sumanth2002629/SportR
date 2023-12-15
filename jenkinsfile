@@ -1,8 +1,8 @@
 pipeline{
     
     environment{
-        DOCKERHUB_REGISTRY = "sumanthbadam/sportr"
-        DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
+        DOCKERHUB_REGISTRY = "kdesh2001/sportr"
+        DOCKERHUB_CREDENTIALS = credentials('Dockerhub')
     }
     
     agent any
@@ -11,8 +11,8 @@ pipeline{
         
         stage('Cloning the repo'){
             steps{
-                git branch: 'dev',
-                url:'https://github.com/C-project-team-16/SportR.git'
+                git branch: 'main',
+                url:'https://github.com/kdesh2001/SportR.git'
             }
         }
         stage('Setting up the testDB'){
@@ -68,15 +68,15 @@ pipeline{
             }
         }
         
-stage('Step 6: Ansible Deployment'){
+	stage('Step 6: Ansible Deployment'){
             steps{
                 ansiblePlaybook becomeUser: null,
                 colorized: true,
                 credentialsId: 'localhost',
                 disableHostKeyChecking: true,
                 installation: 'Ansible',
-                inventory: 'inventory',
-                playbook: 'deploy.yml',
+                inventory: 'Deployment/inventory',
+                playbook: 'Deployment/deploy.yml',
                 sudoUser: null
             }
         }
