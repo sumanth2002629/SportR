@@ -14,7 +14,7 @@ git clone https://github.com/sumanth2002629/SportR.git
 ```bash
 cd SportR
 cd ./backend && npm install
-cd ./SportR-frontend && npm install
+cd ../SportR-frontend && npm install
 ```
 
 4. Configure the local MongoDB server.
@@ -28,7 +28,7 @@ cd backend && npm start
 6. Start the frontend server:
 
 ```bash
-cd frontend && npm start
+cd frontend && npm run dev
 ```
 
 7. Access the application in your web browser at [http://localhost:5173](http://localhost:5173)
