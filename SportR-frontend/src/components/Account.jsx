@@ -180,22 +180,7 @@ const Account = (props) => {
       <h1>My Account</h1>
       <br />
       <div className='container' style={{textAlign:'center', justifyContent: "center", alignItems: "center", height:'50%', border:'2px solid black', padding:'3%', paddingTop:"2%", boxShadow:'3px 3px 2px 3px gray', borderRadius:"5%", background:"#2b3035", color:'white'}}>
-        {/* <br />
-        <h3>Change personal details</h3>
-        <br />
-        <br />
-        <div>
-        <Button variant="primary" type="submit" onClick={handleRent}>
-            getRentedItems
-        </Button>
-        <br />
-        <br />
-          <h3>Change password</h3>
-          <br />
-          <br />
-          <h3>Delete account</h3>
-          <br />
-        </div> */}
+        
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
             <Col>
@@ -226,8 +211,7 @@ const Account = (props) => {
               <Tab.Content>
                 <Tab.Pane eventKey="first">
                   
-                    {/* // rentedItems?
-                    //   <div style={{textAlign:"center", justifyContent:"center", alignItems:"center"}}><h3>No items rented yet</h3></div>: */}
+                    
                       <div>
                         {rentedItems.length>0?
                         <Accordion>

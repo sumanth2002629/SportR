@@ -10,9 +10,9 @@ const userRouter = express.Router();
 
 userRouter.post('/register', async (req, res) => {
     const { username,number, password } = req.body
-    console.log("hi")
+    
     // const saltRounds = 10
-    console.log("here is ", password)
+    
     // try{
     //     const passwordHash = bcrypt.hashSync(password, saltRounds)
     // }
@@ -20,20 +20,20 @@ userRouter.post('/register', async (req, res) => {
     //     console.log(e)
     //     res.status(409).json(e.code)
     // }
-    console.log("hi2")
+    
     const newUser = new userModel({name:username, phone:number, hash:password})
-    console.log("hi3")
+    
     try{
-        console.log("hi4")
+        
         await newUser.save()
-        console.log("hi5")
+        
         res.status(201).json({username,number})
-        console.log("hi6")
+        
     }
     catch(e){
-        console.log("hi7")
+        
         res.status(409).json(e.code)
-        console.log("hi8")
+        
     }
 })
   
@@ -106,18 +106,18 @@ userRouter.post("/changePassword", auth, async (req,res)=>{
 })
 
 userRouter.post("/changePhone", auth, async (req,res)=>{
-    console.log("heloo2");
+    
     const { password, newPhone} = req.body;
     // const userId = req.user.userId;
     
     let user;
-    console.log("User is ",req.user.username);
+    
     try{
          user = await userModel.findById(req.user.id)
     }
     catch(e){
-        console.log(e.message);
-        // res.status(401).json({});
+        
+        
         res.status(404).json({ message: e.message });
     }
 
@@ -147,7 +147,7 @@ userRouter.post("/changePhone", auth, async (req,res)=>{
 })
 
 userRouter.post("/deleteUser", auth, async (req,res)=>{
-    console.log("hello again")
+    
     const {password} = req.body;
     const username = req.user.username
 

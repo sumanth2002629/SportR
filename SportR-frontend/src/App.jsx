@@ -6,11 +6,11 @@ import {
 } from 'react-router-dom'
 
 import Home from "./components/Home"
-import About from "./components/About"
+
 import Register from "./components/Register"
 import Login from "./components/Login"
 import Rent from "./components/Rent"
-import Add from "./components/Add"
+
 import Account from "./components/Account"
 
 import Container from 'react-bootstrap/Container';
@@ -24,16 +24,13 @@ import CategoryItems from './components/CategoryItems'
 function App() {
   const [login, setLogin] = useState(window.localStorage.getItem('token')?true:false);
 
-  // if(window.localStorage.getItem('token'))
-  // {
-  //   setLogin(true);
-  // }
+  
   
 
   return (
     <Router >
         <div>
-          {/* <Navbar expand="lg" className="bg-body-tertiary" > */}
+          
           <Navbar expand="lg" className='bg-body-tertiary' bg='dark' data-bs-theme='dark' style={{color:"white"}}>
             <Container>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -43,17 +40,13 @@ function App() {
                 </Navbar.Brand>
                 <Nav className="ms-auto">
                   <Nav.Link className='navlink'><Link to="/" className="nav-link">Home</Link></Nav.Link>
-                  {/* <Nav.Link className='navlink'><Link to="/about" className="nav-link">About</Link></Nav.Link> */}
+                  
                   <Nav.Link className='navlink'>
                     {
                       login?<Link to="/rent" className="nav-link">Rent</Link>:<Link to="/login" className="nav-link">Login</Link>
                     }
                   </Nav.Link>
-                  {/* <Nav.Link className='navlink'>
-                    {
-                      login?<Link to="/additem" className="nav-link">Add</Link>:<></>
-                    }
-                  </Nav.Link> */}
+                  
                   <Nav.Link className='navlink'>
                     {
                       login?<Link to="/myaccount" className="nav-link">My Account</Link>:<></>
@@ -72,13 +65,12 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home login={login}/>}/>
-          <Route path="/about" element={<About/>}/>
           <Route path="/login" element={<Login onUpdate={setLogin}/>}/>
           <Route path="/rent" element={<Rent loggedin={login}/>}/>
           <Route path="/categories/:category" element={<CategoryItems loggedin={login} setLogin={setLogin}/>}/>
           <Route path="/myaccount" element={<Account loggedin={login} setLogin={setLogin}/>}/>
           <Route path="/register" element={<Register/>}/>  
-          <Route path="/additem" element={<Add loggedin={login}/>}/>    
+          
         </Routes>
     </Router>
       

@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 function RentForm(props) {
     
-    // const title="Rent "+props.item;
+    
     const [date, setDate] = useState(1);
     const [quantity, setQuantity] = useState('');
     return(
@@ -25,8 +25,7 @@ function RentForm(props) {
                   new Date(e.target.value).toISOString().split('T')[0];
                 })
               } value={date}/>
-                        {/* <input type="date"  onChange={props.onDateChange} value={props.date}/> */}
-                        {/* <DatePicker onChange={props.onDateChange} value={props.date} /> */}
+                        
                     </Form.Group>
                     
                 </Modal.Body>

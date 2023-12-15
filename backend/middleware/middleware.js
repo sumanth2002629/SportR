@@ -12,10 +12,7 @@ const logger = winston.createLogger({
 
 const requestLogger = (request, response, next) => {
 
-  // fs.appendFileSync('./log.txt', '\nMethod: '+request.method,"utf-8");
-  // fs.appendFileSync('./log.txt', '\nPath:  '+ request.path, "utf-8");
-  // fs.appendFileSync('./log.txt', '\nBody:  '+ request.body, "utf-8");
-  // fs.appendFileSync('./log.txt', "\n---", "utf-8");
+  
   logger.info('Method: '+request.method)
   logger.info('Path: '+request.path)
   logger.info('Body: '+request.body)

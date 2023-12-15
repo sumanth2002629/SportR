@@ -14,7 +14,7 @@ const Login = ({ onUpdate }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // Add your login logic here
+    
     try {
       const response = await axios.post("http://localhost:3001/user/login", {username,password})
       const user = response.data
@@ -38,7 +38,7 @@ const Login = ({ onUpdate }) => {
   };
 
   const handleRegister = () => {
-    // Add your registration logic here
+    
     navigate("/register")    
   };
 

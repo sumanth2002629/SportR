@@ -25,10 +25,7 @@ const Home = ({login}) => {
               <br />
               <Button variant="light" onClick={Rent}>Take for Rent</Button>
             </Col>
-            {/* <Col>
-              
-              <div className="background-image"></div>
-            </Col> */}
+            
           </Row>
         </Container>
       </div>

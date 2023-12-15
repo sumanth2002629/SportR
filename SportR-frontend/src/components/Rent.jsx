@@ -20,7 +20,7 @@ const categories = [
   ];
   
 function Rent(props) {
-    // const [selectedCategory, setSelectedCategory] = useState(null);
+    
    
 
     const navigate = useNavigate();
@@ -47,9 +47,7 @@ function Rent(props) {
                     ))}
                 </Row>
             </div>
-        {/* {categories.map((category, index) => (
-                        <Category key={index} index={index} category={category}/>
-                    ))} */}
+        
         </div>
     )
 }
