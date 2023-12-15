@@ -1,0 +1,7 @@
+To run locally:
+
+Run these commands first:
+
+sudo docker run -d -p 2717:27017 -v /home/sumanth/Documents/sem7/SPE/Major_Project/db:/data/db --name mongodb mongo:4.2 
+
+sudo docker run -d -p 2718:27017 -v /home/sumanth/Documents/sem7/SPE/Major_Project/test_db:/data/db --name mongodb_test mongo:4.2 

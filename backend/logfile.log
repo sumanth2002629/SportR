@@ -1,0 +1,75 @@
+{"level":"info","message":"Method: POST"}
+{"level":"info","message":"Path: /user/login"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: POST"}
+{"level":"info","message":"Path: /user/changePhone"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: POST"}
+{"level":"info","message":"Path: /user/register"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: POST"}
+{"level":"info","message":"Path: /user/login"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: POST"}
+{"level":"info","message":"Path: /rent/rentItem"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: POST"}
+{"level":"info","message":"Path: /user/register"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: POST"}
+{"level":"info","message":"Path: /user/register"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: POST"}
+{"level":"info","message":"Path: /user/login"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: POST"}
+{"level":"info","message":"Path: /rent/rentItem"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: POST"}
+{"level":"info","message":"Path: /rent/rentItem"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: POST"}
+{"level":"info","message":"Path: /rent/rentItem"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}
+{"level":"info","message":"Method: GET"}
+{"level":"info","message":"Path: /rent/rentedItems"}
+{"level":"info","message":"Body: [object Object]"}

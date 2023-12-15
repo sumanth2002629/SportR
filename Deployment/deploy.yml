@@ -1,0 +1,17 @@
+---
+- name: Deploy Docker Images
+  hosts: localhost, remote
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Copy Docker Compose file from host machine to remote host
+      copy:
+        src: ../docker-compose.yml
+        dest: ./
+    - name: Start docker service
+      service:
+        name: docker
+        state: started
+    - name: Run the pulled Docker images in detached mode
+      command: docker-compose up -d
+

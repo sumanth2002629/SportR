@@ -1,0 +1,84 @@
+pipeline{
+    
+    environment{
+        DOCKERHUB_REGISTRY = "kdesh2001/sportr"
+        DOCKERHUB_CREDENTIALS = credentials('Dockerhub')
+    }
+    
+    agent any
+    
+    stages{
+        
+        stage('Cloning the repo'){
+            steps{
+                git branch: 'main',
+                url:'https://github.com/kdesh2001/SportR.git'
+            }
+        }
+        stage('Setting up the testDB'){
+            steps{
+                sh "docker run -d -p 2718:27017 --name mongodb_test mongo:4.2"   
+            }
+        }
+        stage("Testing Api"){
+            steps{
+                sh ''' 
+                    cd backend
+                    npm install
+                    npm run test
+                    
+                    cd ..
+                '''
+            }
+        }
+        stage("closing testDB"){
+            steps{
+                sh '''
+                    docker stop mongodb_test
+                    docker rm mongodb_test
+                '''
+            }
+        }
+        stage('Build Docker Images for frontend and backend'){
+            steps{
+                   sh "docker build -t $DOCKERHUB_REGISTRY-frontend:latest SportR-frontend/"
+                   sh "docker build -t $DOCKERHUB_REGISTRY-backend:latest backend/"
+            }
+        }
+        
+        stage('Login to Docker Hub') {
+				steps {
+					sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+				}
+		}
+        
+        stage('Push docker images to hub') {
+            steps{
+                sh "docker push $DOCKERHUB_REGISTRY-backend:latest"
+                sh "docker push $DOCKERHUB_REGISTRY-frontend:latest"
+                }
+        }
+        
+        stage('Clean docker images'){
+            steps{
+                script{
+                    sh 'docker container prune -f'
+                    sh 'docker image prune -f'
+                }               
+            }
+        }
+        
+	stage('Step 6: Ansible Deployment'){
+            steps{
+                ansiblePlaybook becomeUser: null,
+                colorized: true,
+                credentialsId: 'localhost',
+                disableHostKeyChecking: true,
+                installation: 'Ansible',
+                inventory: 'Deployment/inventory',
+                playbook: 'Deployment/deploy.yml',
+                sudoUser: null
+            }
+        }
+    }
+}

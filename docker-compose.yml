@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: db
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - db_vol:/data/db
+    networks:
+      - sportr
+  frontend:
+    container_name: frontend
+    image: kdesh2001/sportr-frontend:latest
+    ports:
+      - 3000:3000
+    networks:
+      - sportr
+    depends_on:
+      - db
+      - backend
+  backend:
+    container_name: backend
+    image: kdesh2001/sportr-backend:latest    
+    ports:
+      - 3001:3001
+    environment:
+      SECRET: hello
+      DB_URL: mongodb://db:27017/sportr
+      PORT: 3001
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      - sportr
+
+networks:
+  sportr:
+    driver: bridge
+
+volumes:
+  db_vol: {}
